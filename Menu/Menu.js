@@ -21,9 +21,15 @@ const createMenu = menuItems => {
     li.textContent = item;
     ul.appendChild(li);
   });
+
+  document.querySelector('.menu-button').addEventListener('click', () => {
+    menu.classList.toggle('menu--open');
+  });
+
+  return menu;
 }
 
-createMenu(menuItems);
+document.body.appendChild(createMenu(menuItems));
 
 /* 
 
