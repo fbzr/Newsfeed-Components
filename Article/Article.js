@@ -97,51 +97,57 @@ const data = [
   }
 ];
 
-const createArticle = obj => {
-  const article = document.createElement('div');
-  const title = document.createElement('h2');
-  const date = document.createElement('p');
-  const paragraph = document.createElement('p');
-  const paragraph2 = document.createElement('p');
-  const paragraph3 = document.createElement('p');
-  const expandButton = document.createElement('span');
 
-  article.classList.value = 'article';
-  title.textContent = obj.title;
-  date.textContent = obj.date;
-  paragraph.textContent = obj.firstParagraph;
-  paragraph2.textContent = obj.secondParagraph;
-  paragraph3.textContent = obj.thirdParagraph;
-  expandButton.textContent = '+';
-
-  date.classList.add('date');
-  expandButton.classList.add('expandButton');
-
-  // add event listener to button
-  expandButton.addEventListener('click', e => {
-    if (e.target.textContent === '+' ) {
-      e.target.textContent = '-';
-    } else {
-      e.target.textContent = '+';
-    }
-    e.target.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
-  });
-
-  article.appendChild(title);
-  article.appendChild(date);
-  article.appendChild(paragraph);
-  article.appendChild(paragraph2);
-  article.appendChild(paragraph3);
-  article.appendChild(expandButton);
-
-  return article;
+function Article(props) {
+  this.title = props.title;
+  this.date = props.date;
+  this.firstParagraph = props.firstParagraph;
+  this.secondParagraph = props.secondParagraph;
+  this.thirdParagraph = props.thirdParagraph;
+  this.createComponent = () => {
+    const articleDiv = document.createElement('div');
+    const title = document.createElement('h2');
+    const date = document.createElement('p');
+    const paragraph = document.createElement('p');
+    const paragraph2 = document.createElement('p');
+    const paragraph3 = document.createElement('p');
+    const expandButton = document.createElement('span');
+  
+    articleDiv.classList.value = 'article';
+    title.textContent = this.title;
+    date.textContent = this.date;
+    paragraph.textContent = this.firstParagraph;
+    paragraph2.textContent = this.secondParagraph;
+    paragraph3.textContent = this.thirdParagraph;
+    expandButton.textContent = '+';
+  
+    date.classList.add('date');
+    expandButton.classList.add('expandButton');
+  
+    // add event listener to button
+    expandButton.addEventListener('click', e => {
+      if (e.target.textContent === '+' ) {
+        e.target.textContent = '-';
+      } else {
+        e.target.textContent = '+';
+      }
+      e.target.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
+    });
+  
+    articleDiv.appendChild(title);
+    articleDiv.appendChild(date);
+    articleDiv.appendChild(paragraph);
+    articleDiv.appendChild(paragraph2);
+    articleDiv.appendChild(paragraph3);
+    articleDiv.appendChild(expandButton);
+  
+    return articleDiv;
+  }  
 }
 
-// loop through the data array
-// create an article for each data obj
-// append the article to .articles div
 data.forEach(article => {
-  document.querySelector('.articles').appendChild(createArticle(article));
+  const newArticle = new Article(article);
+  document.querySelector('.articles').appendChild(newArticle.createComponent());
 });
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
