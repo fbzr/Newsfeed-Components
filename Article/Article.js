@@ -120,9 +120,14 @@ const CreateArticle = obj => {
   // Append first paragraph
   article.appendChild(paragraph3);
 
-  // Create span
+  // Create span - expand button
   const expandButton = document.createElement('span');
   expandButton.classList.add('expandButton');
+  // add event listener to button
+  expandButton.addEventListener('click', e => {
+    document.querySelector('article').classList.toggle('article-open'); // toggle .article-open to article div
+  });
+  // Append expand button
   article.appendChild(expandButton);
 
   return article;
