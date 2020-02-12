@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Creative title',
+    date: 'Feb 12th, 2020',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis. Sagittis vitae et leo duis ut. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Urna nec tincidunt praesent semper. Diam vulputate ut pharetra sit amet aliquam id diam maecenas. Nec feugiat nisl pretium fusce id. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Sit amet nulla facilisi morbi tempus iaculis. Luctus venenatis lectus magna fringilla urna. Quis blandit turpis cursus in hac habitasse.`,
+
+    secondParagraph: `Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Diam quis enim lobortis scelerisque fermentum dui faucibus in. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Donec massa sapien faucibus et molestie. Laoreet sit amet cursus sit amet dictum. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Diam quis enim lobortis scelerisque fermentum dui faucibus in. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Donec massa sapien faucibus et molestie. Laoreet sit amet cursus sit amet dictum.`,
+
+    thirdParagraph: `Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Ac tortor vitae purus faucibus. Vivamus at augue eget arcu dictum varius duis at. Pellentesque habitant morbi tristique senectus et netus et. Ipsum a arcu cursus vitae. Sed cras ornare arcu dui vivamus arcu felis bibendum ut. Pellentesque id nibh tortor id aliquet lectus. Vitae elementum curabitur vitae nunc. In arcu cursus euismod quis viverra nibh cras. Massa eget egestas purus viverra accumsan. Amet commodo nulla facilisi nullam.`
   }
 ];
 
@@ -123,6 +132,7 @@ const CreateArticle = obj => {
   // Create span - expand button
   const expandButton = document.createElement('span');
   expandButton.classList.add('expandButton');
+  expandButton.textContent = '+';
   // add event listener to button
   expandButton.addEventListener('click', e => {
     document.querySelector('.article').classList.toggle('article-open'); // toggle .article-open to article div
