@@ -88,6 +88,48 @@ const data = [
   }
 ];
 
+const CreateArticle = obj => {
+  const article = document.createElement('div');
+  article.classList.value = 'article';
+
+  // Create H2
+  const title = document.createElement('h2');
+  title.textContent = obj.title;
+  // Append H2 to div
+  article.appendChild(title);
+
+  // Create p - date
+  const date = document.createElement('p');
+  date.textContent = obj.date;
+  // Append p to div
+  article.appendChild(date);
+
+  // Create paragraph
+  const paragraph = document.createElement('p');
+  paragraph.textContent = obj.firstParagraph;
+  // Append first paragraph
+  article.appendChild(paragraph);
+  
+  const paragraph2 = document.createElement('p');
+  paragraph2.textContent = obj.secondParagraph;
+  // Append second paragraph
+  article.appendChild(paragraph2);
+
+  const paragraph3 = document.createElement('p');
+  paragraph3.textContent = obj.thirdParagraph;
+  // Append first paragraph
+  article.appendChild(paragraph3);
+
+  // Create span
+  const expandButton = document.createElement('span');
+  expandButton.classList.add('expandButton');
+  article.appendChild(expandButton);
+
+  return article;
+}
+
+console.log(CreateArticle(data[0]));
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
