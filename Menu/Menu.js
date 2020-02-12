@@ -9,6 +9,22 @@ let menuItems = [
   'Log Out'
 ];
 
+const createMenu = menuItems => {
+  const menu = document.createElement('div');
+  menu.classList.add('menu');
+
+  const ul = document.createElement('ul');  
+  menu.appendChild(ul);
+
+  menuItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+}
+
+createMenu(menuItems);
+
 /* 
 
   Step 1: Write a function that will create a menu component as seen below:
