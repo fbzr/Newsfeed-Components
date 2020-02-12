@@ -145,6 +145,9 @@ function Article(props) {
   }  
 }
 
+// loop through the data array
+// create an article for each data obj
+// append the article to .articles div
 data.forEach(article => {
   const newArticle = new Article(article);
   document.querySelector('.articles').appendChild(newArticle.createComponent());
