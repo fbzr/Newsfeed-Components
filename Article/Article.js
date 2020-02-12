@@ -99,41 +99,24 @@ const data = [
 
 const createArticle = obj => {
   const article = document.createElement('div');
-  article.classList.value = 'article';
-
-  // Create H2
   const title = document.createElement('h2');
-  title.textContent = obj.title;
-  // Append H2 to div
-  article.appendChild(title);
-
-  // Create p - date
   const date = document.createElement('p');
-  date.textContent = obj.date;
-  date.classList.add('date')
-  // Append p to div
-  article.appendChild(date);
-
-  // Create paragraph
   const paragraph = document.createElement('p');
-  paragraph.textContent = obj.firstParagraph;
-  // Append first paragraph
-  article.appendChild(paragraph);
-  
   const paragraph2 = document.createElement('p');
-  paragraph2.textContent = obj.secondParagraph;
-  // Append second paragraph
-  article.appendChild(paragraph2);
-
   const paragraph3 = document.createElement('p');
-  paragraph3.textContent = obj.thirdParagraph;
-  // Append first paragraph
-  article.appendChild(paragraph3);
-
-  // Create span - expand button
   const expandButton = document.createElement('span');
-  expandButton.classList.add('expandButton');
+
+  article.classList.value = 'article';
+  title.textContent = obj.title;
+  date.textContent = obj.date;
+  paragraph.textContent = obj.firstParagraph;
+  paragraph2.textContent = obj.secondParagraph;
+  paragraph3.textContent = obj.thirdParagraph;
   expandButton.textContent = '+';
+
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
   // add event listener to button
   expandButton.addEventListener('click', e => {
     if (e.target.textContent === '+' ) {
@@ -143,7 +126,12 @@ const createArticle = obj => {
     }
     e.target.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
   });
-  // Append expand button
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(paragraph);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
   article.appendChild(expandButton);
 
   return article;
