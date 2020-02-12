@@ -24,6 +24,10 @@ const createMenu = menuItems => {
 
   document.querySelector('.menu-button').addEventListener('click', () => {
     menu.classList.toggle('menu--open');
+    // Add gsap animation when menu opens
+    if (menu.classList.contains('menu--open')) {
+      gsap.from(".menu--open", {opacity: 0, duration: 0.5});
+    }
   });
 
   return menu;

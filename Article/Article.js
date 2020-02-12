@@ -110,6 +110,7 @@ const createArticle = obj => {
   // Create p - date
   const date = document.createElement('p');
   date.textContent = obj.date;
+  date.classList.add('date')
   // Append p to div
   article.appendChild(date);
 
@@ -135,6 +136,11 @@ const createArticle = obj => {
   expandButton.textContent = '+';
   // add event listener to button
   expandButton.addEventListener('click', e => {
+    if (e.target.textContent === '+' ) {
+      e.target.textContent = '-';
+    } else {
+      e.target.textContent = '+';
+    }
     e.target.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
   });
   // Append expand button
