@@ -97,7 +97,7 @@ const data = [
   }
 ];
 
-const CreateArticle = obj => {
+const createArticle = obj => {
   const article = document.createElement('div');
   article.classList.value = 'article';
 
@@ -135,7 +135,7 @@ const CreateArticle = obj => {
   expandButton.textContent = '+';
   // add event listener to button
   expandButton.addEventListener('click', e => {
-    document.querySelector('.article').classList.toggle('article-open'); // toggle .article-open to article div
+    e.target.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
   });
   // Append expand button
   article.appendChild(expandButton);
@@ -147,7 +147,7 @@ const CreateArticle = obj => {
 // create an article for each data obj
 // append the article to .articles div
 data.forEach(article => {
-  document.querySelector('.articles').appendChild(CreateArticle(article));
+  document.querySelector('.articles').appendChild(createArticle(article));
 });
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
