@@ -113,7 +113,8 @@ function Article(props) {
     const paragraph3 = document.createElement('p');
     const expandButton = document.createElement('span');
     const removeButton = document.createElement('span');
-    const icon = document.createElement('i');
+    const expandIcon = document.createElement('i');
+    const removeIcon = document.createElement('i');
   
     articleDiv.classList.value = 'article';
     title.textContent = this.title;
@@ -124,19 +125,32 @@ function Article(props) {
   
     date.classList.add('date');
     expandButton.classList.add('expandButton');
-    icon.classList.value = 'fas fa-chevron-down fa-2x';
+    expandIcon.classList.value = 'fas fa-chevron-down fa-2x';
+    removeButton.classList.add('removeButton');
+    removeIcon.classList.value = 'fas fa-trash-alt';
   
-    // add event listener to button
+    // add event listener to expand button
     expandButton.addEventListener('click', e => {
-      console.log(e.target);
       if (e.target.classList.contains('fa-chevron-down')) {
         e.target.classList.remove('fa-chevron-down');
         e.target.classList.add('fa-chevron-up');
+        gsap.to(articleDiv, {
+          duration: 1,
+          height: 'auto'
+        });
       } else {
         e.target.classList.remove('fa-chevron-up');
         e.target.classList.add('fa-chevron-down');
+        gsap.to(articleDiv, {
+          duration: 1,
+          height: 50
+        });
       }
-      e.target.parentElement.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
+    });
+
+    // add event listener to remove button
+    removeButton.addEventListener('click', e => {
+      document.querySelector('.articles').removeChild(articleDiv);
     });
 
   
@@ -146,7 +160,9 @@ function Article(props) {
     articleDiv.appendChild(paragraph2);
     articleDiv.appendChild(paragraph3);
     articleDiv.appendChild(expandButton);
-    expandButton.appendChild(icon);
+    expandButton.appendChild(expandIcon);
+    title.appendChild(removeButton);
+    removeButton.appendChild(removeIcon);
   
     return articleDiv;
   }  
