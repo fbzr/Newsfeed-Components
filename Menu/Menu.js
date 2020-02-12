@@ -9,6 +9,16 @@ let menuItems = [
   'Log Out'
 ];
 
+// Shake element animation
+const shakeElement = e => {
+  gsap.to(e.target, {
+      duration: 0.05,
+      x: '+=10',
+      yoyo: true,
+      repeat: 3
+  });
+}
+
 const createMenu = menuItems => {
   const menu = document.createElement('div');
   menu.classList.add('menu');
@@ -19,6 +29,8 @@ const createMenu = menuItems => {
   menuItems.forEach(item => {
     const li = document.createElement('li');
     li.textContent = item;
+    // Add shake animation to li
+    li.addEventListener('mouseenter', shakeElement)
     ul.appendChild(li);
   });
 
