@@ -112,6 +112,8 @@ function Article(props) {
     const paragraph2 = document.createElement('p');
     const paragraph3 = document.createElement('p');
     const expandButton = document.createElement('span');
+    const removeButton = document.createElement('span');
+    const icon = document.createElement('i');
   
     articleDiv.classList.value = 'article';
     title.textContent = this.title;
@@ -119,20 +121,24 @@ function Article(props) {
     paragraph.textContent = this.firstParagraph;
     paragraph2.textContent = this.secondParagraph;
     paragraph3.textContent = this.thirdParagraph;
-    expandButton.textContent = '+';
   
     date.classList.add('date');
     expandButton.classList.add('expandButton');
+    icon.classList.value = 'fas fa-chevron-down fa-2x';
   
     // add event listener to button
     expandButton.addEventListener('click', e => {
-      if (e.target.textContent === '+' ) {
-        e.target.textContent = '-';
+      console.log(e.target);
+      if (e.target.classList.contains('fa-chevron-down')) {
+        e.target.classList.remove('fa-chevron-down');
+        e.target.classList.add('fa-chevron-up');
       } else {
-        e.target.textContent = '+';
+        e.target.classList.remove('fa-chevron-up');
+        e.target.classList.add('fa-chevron-down');
       }
-      e.target.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
+      e.target.parentElement.parentElement.classList.toggle('article-open'); // toggle .article-open to article div
     });
+
   
     articleDiv.appendChild(title);
     articleDiv.appendChild(date);
@@ -140,6 +146,7 @@ function Article(props) {
     articleDiv.appendChild(paragraph2);
     articleDiv.appendChild(paragraph3);
     articleDiv.appendChild(expandButton);
+    expandButton.appendChild(icon);
   
     return articleDiv;
   }  
