@@ -115,6 +115,8 @@ function Article(props) {
     const removeButton = document.createElement('span');
     const expandIcon = document.createElement('i');
     const removeIcon = document.createElement('i');
+
+
   
     articleDiv.classList.value = 'article';
     title.textContent = this.title;
@@ -128,6 +130,16 @@ function Article(props) {
     expandIcon.classList.value = 'fas fa-chevron-down fa-2x';
     removeButton.classList.add('removeButton');
     removeIcon.classList.value = 'fas fa-trash-alt';
+
+    articleDiv.appendChild(title);
+    articleDiv.appendChild(date);
+    articleDiv.appendChild(paragraph);
+    articleDiv.appendChild(paragraph2);
+    articleDiv.appendChild(paragraph3);
+    articleDiv.appendChild(expandButton);
+    expandButton.appendChild(expandIcon);
+    title.appendChild(removeButton);
+    removeButton.appendChild(removeIcon);
   
     // add event listener to expand button
     expandButton.addEventListener('click', e => {
@@ -136,7 +148,15 @@ function Article(props) {
 
     // add event listener to remove button
     removeButton.addEventListener('click', e => {
-      document.querySelector('.articles').removeChild(articleDiv);
+      e.stopPropagation();
+      gsap.to(articleDiv, {
+        duration: 0.5,
+        x: -1200,
+        opacity: 0,
+        onComplete: () => {
+          document.querySelector('.articles').removeChild(articleDiv);
+        }
+      });
     });
     // mouse over to remove button
     removeButton.addEventListener('mouseenter', e => {
@@ -173,19 +193,7 @@ function Article(props) {
         expandIcon.classList.add('fa-chevron-down');
       }
 
-  
     });
-
-  
-    articleDiv.appendChild(title);
-    articleDiv.appendChild(date);
-    articleDiv.appendChild(paragraph);
-    articleDiv.appendChild(paragraph2);
-    articleDiv.appendChild(paragraph3);
-    articleDiv.appendChild(expandButton);
-    expandButton.appendChild(expandIcon);
-    title.appendChild(removeButton);
-    removeButton.appendChild(removeIcon);
   
     return articleDiv;
   }  
