@@ -12,21 +12,27 @@
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
 
+  transition: background-color 500ms;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
   h2 {
     font-size: 28px;
     padding: 0;
     margin: 15px 0 0;
-  }
+    position: relative;
 
+    span.removeButton {
+      position: absolute;
+      right: 0;
+    }
+  }
   .date {
     margin: 0;
     font-size: 14px;
-  }
-
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
   }
 
   .expandButton {
@@ -37,14 +43,9 @@
     color: grey;
     cursor: pointer;
     transform: translate(-50%);
-    background-color: white;
+    background-color: transparent;
   }
 }
-
-.article-open {
-  height: 400px;
-}
-
 
 
 

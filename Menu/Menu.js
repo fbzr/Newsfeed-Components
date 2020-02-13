@@ -9,6 +9,44 @@ let menuItems = [
   'Log Out'
 ];
 
+// Shake element animation
+const shakeElement = e => {
+  gsap.to(e.target, {
+      duration: 0.05,
+      x: '+=10',
+      yoyo: true,
+      repeat: 3
+  });
+}
+
+const createMenu = menuItems => {
+  const menu = document.createElement('div');
+  menu.classList.add('menu');
+
+  const ul = document.createElement('ul');  
+  menu.appendChild(ul);
+
+  menuItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    // Add shake animation to li
+    li.addEventListener('mouseenter', shakeElement)
+    ul.appendChild(li);
+  });
+
+  document.querySelector('.menu-button').addEventListener('click', () => {
+    menu.classList.toggle('menu--open');
+    // Add gsap animation when menu opens
+    if (menu.classList.contains('menu--open')) {
+      gsap.from(".menu--open", {opacity: 0, duration: 0.5});
+    }
+  });
+
+  return menu;
+}
+
+document.body.appendChild(createMenu(menuItems));
+
 /* 
 
   Step 1: Write a function that will create a menu component as seen below:

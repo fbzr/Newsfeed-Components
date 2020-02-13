@@ -85,8 +85,127 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Creative title',
+    date: 'Feb 12th, 2020',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis. Sagittis vitae et leo duis ut. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Urna nec tincidunt praesent semper. Diam vulputate ut pharetra sit amet aliquam id diam maecenas. Nec feugiat nisl pretium fusce id. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Sit amet nulla facilisi morbi tempus iaculis. Luctus venenatis lectus magna fringilla urna. Quis blandit turpis cursus in hac habitasse.`,
+
+    secondParagraph: `Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Diam quis enim lobortis scelerisque fermentum dui faucibus in. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Donec massa sapien faucibus et molestie. Laoreet sit amet cursus sit amet dictum. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Diam quis enim lobortis scelerisque fermentum dui faucibus in. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Donec massa sapien faucibus et molestie. Laoreet sit amet cursus sit amet dictum.`,
+
+    thirdParagraph: `Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Ac tortor vitae purus faucibus. Vivamus at augue eget arcu dictum varius duis at. Pellentesque habitant morbi tristique senectus et netus et. Ipsum a arcu cursus vitae. Sed cras ornare arcu dui vivamus arcu felis bibendum ut. Pellentesque id nibh tortor id aliquet lectus. Vitae elementum curabitur vitae nunc. In arcu cursus euismod quis viverra nibh cras. Massa eget egestas purus viverra accumsan. Amet commodo nulla facilisi nullam.`
   }
 ];
+
+
+function Article(props) {
+  this.title = props.title;
+  this.date = props.date;
+  this.firstParagraph = props.firstParagraph;
+  this.secondParagraph = props.secondParagraph;
+  this.thirdParagraph = props.thirdParagraph;
+  this.createComponent = () => {
+    const articleDiv = document.createElement('div');
+    const title = document.createElement('h2');
+    const date = document.createElement('p');
+    const paragraph = document.createElement('p');
+    const paragraph2 = document.createElement('p');
+    const paragraph3 = document.createElement('p');
+    const expandButton = document.createElement('span');
+    const removeButton = document.createElement('span');
+    const expandIcon = document.createElement('i');
+    const removeIcon = document.createElement('i');
+
+
+  
+    articleDiv.classList.value = 'article';
+    title.textContent = this.title;
+    date.textContent = this.date;
+    paragraph.textContent = this.firstParagraph;
+    paragraph2.textContent = this.secondParagraph;
+    paragraph3.textContent = this.thirdParagraph;
+  
+    date.classList.add('date');
+    expandButton.classList.add('expandButton');
+    expandIcon.classList.value = 'fas fa-chevron-down fa-2x';
+    removeButton.classList.add('removeButton');
+    removeIcon.classList.value = 'fas fa-trash-alt';
+
+    articleDiv.appendChild(title);
+    articleDiv.appendChild(date);
+    articleDiv.appendChild(paragraph);
+    articleDiv.appendChild(paragraph2);
+    articleDiv.appendChild(paragraph3);
+    articleDiv.appendChild(expandButton);
+    expandButton.appendChild(expandIcon);
+    title.appendChild(removeButton);
+    removeButton.appendChild(removeIcon);
+  
+    // add event listener to expand button
+    expandButton.addEventListener('click', e => {
+
+    });
+
+    // add event listener to remove button
+    removeButton.addEventListener('click', e => {
+      e.stopPropagation();
+      gsap.to(articleDiv, {
+        duration: 0.5,
+        x: -1200,
+        opacity: 0,
+        onComplete: () => {
+          document.querySelector('.articles').removeChild(articleDiv);
+        }
+      });
+    });
+    // mouse over to remove button
+    removeButton.addEventListener('mouseenter', e => {
+      e.stopPropagation();
+      gsap.to(removeIcon, {
+        duration: 0.1,
+        transform: 'scale(1.2)'
+      });
+    });
+    removeButton.addEventListener('mouseleave', e => {
+      gsap.to(removeIcon, {
+        duration: 0.1,
+        transform: 'scale(1)'
+      });
+    });
+
+    // add click to article - expand and collapse
+    articleDiv.addEventListener('click', (e) => {
+      if (!articleDiv.classList.contains('expanded')) {
+        gsap.to(articleDiv, {
+          duration: 0.5,
+          height: 'auto'
+        });
+        articleDiv.classList.add('expanded');
+        expandIcon.classList.remove('fa-chevron-down');
+        expandIcon.classList.add('fa-chevron-up');
+      } else {
+        gsap.to(articleDiv, {
+          duration: 0.5,
+          height: 50
+        });
+        articleDiv.classList.remove('expanded');
+        expandIcon.classList.remove('fa-chevron-up');
+        expandIcon.classList.add('fa-chevron-down');
+      }
+
+    });
+  
+    return articleDiv;
+  }  
+}
+
+// loop through the data array
+// create an article for each data obj
+// append the article to .articles div
+data.forEach(article => {
+  const newArticle = new Article(article);
+  document.querySelector('.articles').appendChild(newArticle.createComponent());
+});
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
