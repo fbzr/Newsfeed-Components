@@ -131,26 +131,49 @@ function Article(props) {
   
     // add event listener to expand button
     expandButton.addEventListener('click', e => {
-      if (e.target.classList.contains('fa-chevron-down')) {
-        e.target.classList.remove('fa-chevron-down');
-        e.target.classList.add('fa-chevron-up');
-        gsap.to(articleDiv, {
-          duration: 1,
-          height: 'auto'
-        });
-      } else {
-        e.target.classList.remove('fa-chevron-up');
-        e.target.classList.add('fa-chevron-down');
-        gsap.to(articleDiv, {
-          duration: 1,
-          height: 50
-        });
-      }
+
     });
 
     // add event listener to remove button
     removeButton.addEventListener('click', e => {
       document.querySelector('.articles').removeChild(articleDiv);
+    });
+    // mouse over to remove button
+    removeButton.addEventListener('mouseenter', e => {
+      e.stopPropagation();
+      gsap.to(removeIcon, {
+        duration: 0.1,
+        transform: 'scale(1.2)'
+      });
+    });
+    removeButton.addEventListener('mouseleave', e => {
+      gsap.to(removeIcon, {
+        duration: 0.1,
+        transform: 'scale(1)'
+      });
+    });
+
+    // add click to article - expand and collapse
+    articleDiv.addEventListener('click', (e) => {
+      if (!articleDiv.classList.contains('expanded')) {
+        gsap.to(articleDiv, {
+          duration: 0.5,
+          height: 'auto'
+        });
+        articleDiv.classList.add('expanded');
+        expandIcon.classList.remove('fa-chevron-down');
+        expandIcon.classList.add('fa-chevron-up');
+      } else {
+        gsap.to(articleDiv, {
+          duration: 0.5,
+          height: 50
+        });
+        articleDiv.classList.remove('expanded');
+        expandIcon.classList.remove('fa-chevron-up');
+        expandIcon.classList.add('fa-chevron-down');
+      }
+
+  
     });
 
   
